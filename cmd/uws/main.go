@@ -1,7 +1,9 @@
 package main
 
-import "fmt"
+import "github.com/urfave/cli"
 
 func main() {
-	fmt.Print("hello world!")
+	var commands []cli.Command
+	commands = DeclareCommands()
+
 }
