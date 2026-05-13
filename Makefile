@@ -10,10 +10,3 @@ $(BUILD_DIR):
 			echo "Build directory does not exists. Creating it.."; \
 			mkdir "$@"; \
 	fi
-
-
-run:
-	go run ./cmd/uws/main.go
-
-execute: build
-	./bin/uws
