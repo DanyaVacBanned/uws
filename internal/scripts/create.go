@@ -4,11 +4,18 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"ultimateWorkSpace/internal"
 )
 
 func CreateScript(name string) {
 	scanner := bufio.NewScanner(os.Stdin)
 	var lines []string
+
+	err := os.MkdirAll(internal.SCRIPTS_DIR, 0755)
+	if err != nil {
+		fmt.Printf("Error creating scripts directory: %v\n", err)
+		return
+	}
 
 	fmt.Println("Enter shell commands.")
 	fmt.Println("Type 'done' to finish.")
@@ -29,13 +36,13 @@ func CreateScript(name string) {
 	}
 
 	scriptName := fmt.Sprintf("%s.sh", name)
-	file, err := os.Create(scriptName)
+	file, err := os.Create(internal.SCRIPTS_DIR + scriptName)
 
 	if err != nil {
 		fmt.Printf("Error creating script file: %v\n", err)
 		return
 	}
-	err = os.Chmod(scriptName, 0755)
+	err = os.Chmod(internal.SCRIPTS_DIR+scriptName, 0755)
 	if err != nil {
 		fmt.Printf("Error setting script permissions: %v\n", err)
 		return
