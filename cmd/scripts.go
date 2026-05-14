@@ -13,6 +13,20 @@ var scriptsRootCmd = &cobra.Command{
 	Long:  "A set of commands to manage your scripts, including creating, listing, and deleting scripts",
 }
 
+var execScriptCmd = &cobra.Command{
+	Use:   "exec [name]",
+	Short: "Execute a script",
+	Long:  "Execute a script with the given name",
+	Run: func(cmd *cobra.Command, args []string) {
+		if len(args) < 1 {
+			fmt.Println("Please provide the name of the script to execute")
+			return
+		}
+		name := args[0]
+		scripts.ExecScript(name)
+	},
+}
+
 var scriptsCreateCmd = &cobra.Command{
 	Use:   "create [name]",
 	Short: "Create a new script",
@@ -31,4 +45,5 @@ var scriptsCreateCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(scriptsRootCmd)
 	scriptsRootCmd.AddCommand(scriptsCreateCmd)
+	scriptsRootCmd.AddCommand(execScriptCmd)
 }
