@@ -1,5 +1,5 @@
 package internal
 
 const (
-	SCRIPTS_DIR = "../user/scripts/"
+	SCRIPTS_DIR = "/opt/uws/scripts/"
 )
